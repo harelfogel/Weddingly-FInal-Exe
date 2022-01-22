@@ -16,7 +16,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   // Override media queries injected by theme.mixins.toolbar
   '@media all': {
     minHeight: '8vh',
-  },
+  }
 }));
 
 export default function Header() {
