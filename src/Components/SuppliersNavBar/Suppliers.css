@@ -1,21 +1,21 @@
-.nav-button-light{
+.supplier-button{
     text-decoration: none;
     font-size: 1.6rem;
     font-weight: 500;
     display: flex;
-    padding-bottom: 0.4rem;
+    padding-bottom: 0.1rem;
     inline-size: max-content;
     margin: 0.5rem 2rem;
-    color: #49516F;
+    color: rgba(73, 81, 111, 0.47);
     height: 100%;
     justify-content: center;
     align-items: center;
 }
-.nav-button-light:hover{
+.supplier-button:hover{
     color: #49516F;
     border-bottom: 4px solid #FF477E;
 }
-.active-light {
+.supplier-button-active{
     color: #49516F;
     border-bottom: 4px solid #FF477E;
 }

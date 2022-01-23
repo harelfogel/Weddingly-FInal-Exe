@@ -1,8 +1,8 @@
 import { createTheme } from "@mui/material";
 import { buttonStyle } from "./Components/Button";
-
+import {textFieldStyle} from "./Components/Field";
 const customTheme = createTheme({
-    components: {...buttonStyle},
+    components: {...buttonStyle, ...textFieldStyle},
     palette:{
         primary:
         {
@@ -11,7 +11,7 @@ const customTheme = createTheme({
         secondary:{
             main: '#49516F'
         },
-        
+
     },
     typography:{
         fontFamily:[
