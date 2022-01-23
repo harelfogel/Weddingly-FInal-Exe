@@ -8,14 +8,15 @@ export default function LoginForm() {
     <React.Fragment>
         <Box sx={{
          display: 'flex', flexDirection: 'column',
+            justifyContent: 'center', alignItems: 'center',
          p: '10%', height:"60%" }}>
             <FormField label={"Bride Name"}/>
             <FormField label={"Groom Name"}/>
             <FormField label={"Email"}/>
             <FormField label={"Password"}/>
 
+            <Button variant='form' sx={{ marginTop: '2rem'}}>Submit</Button>
 
-            <Button variant='form'>Submit</Button>
         </Box>
     </React.Fragment>
   );

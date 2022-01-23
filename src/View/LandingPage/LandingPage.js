@@ -1,17 +1,15 @@
-import { Grid, Typography, Box } from '@mui/material';
+import { Grid, Typography, Box , Button} from '@mui/material';
 import React from 'react';
 import Header from '../../Components/Header/Header';
-import WeddingPhotoURL from '../../Assets/weddingPhoto.jpg'
 import LoginForm from '../../Components/LogInForm/LogInForm';
+import WeddingPhoto from './WeddingPhoto';
+
 
 function LandingPage() {
   return (
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-            <Header/>
-        </Grid>
+   <>
         <Grid item xs={7} sx={{display: 'flex', flexDirection: 'column', mt: "5rem" }}>
-            <Grid sx={{display: 'flex', width: '100%', justifyContent:'space-between', paddingRight: '18%'}}>
+            <Grid sx={{display: 'flex', width: '100%', justifyContent:'space-between'}}>
                 <svg width="14" height="126" viewBox="0 0 14 126" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="14" height="126" fill="#FF477E"/>
                 </svg>
@@ -30,10 +28,11 @@ function LandingPage() {
         </Grid>
             <LoginForm />
         </Grid>
-        <Grid item xs={5}>
-            <img src={WeddingPhotoURL} className='landing-photo' />
+        <Grid item xs={4}>
+            <WeddingPhoto/>
         </Grid>
-      </Grid>
+       <Button variant="work-with" sx={{color:'white', position: 'absolute', bottom: '30px', right: '50px'}}>Come Work With US!</Button>
+   </>
   );
 }
 
