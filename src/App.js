@@ -1,23 +1,23 @@
-import Header from './Components/Header/Header'
-import LoginForm from './Components/LogInForm/LogInForm';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Header from './Components/Header/Header';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './View/LandingPage/LandingPage';
 import SuppliersPage from './View/SuppliersPage/SuppliersPage';
 import React from "react";
 import { Grid } from '@mui/material';
 
-function App() {
 
+
+function App() {
   return (
     <BrowserRouter>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Header/>
+          <Header />
         </Grid>
-    <Routes>
-    <Route path="/" element={<LandingPage />} />
-      <Route path="/Suppliers" element={<SuppliersPage />} />
-    </Routes>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/Suppliers" element={<SuppliersPage />} />
+        </Routes>
       </Grid>
     </BrowserRouter>
 

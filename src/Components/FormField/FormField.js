@@ -1,9 +1,10 @@
 import React from 'react';
 import { TextField } from '@mui/material';
-const FormField = ({label, ref, width}) => {
+const FormField = ({label, OnChangeHandler, width, value}) => {
     return (
             <TextField
-                ref={ref}
+                value={value}
+                onChange={(e) => OnChangeHandler(e.target.value)}
                 label={label}
                 className="form-variant"
                 sx={{background: '#fff', borderRadius: '12px', margin: "1rem 0.5rem", width: width ?? "50%"}}/>
