@@ -1,8 +1,9 @@
 import React from 'react';
+import './FormField.css'
 import { TextField } from '@mui/material';
 const FormField = ({label, OnChangeHandler, width, value}) => {
     return (
-            <TextField
+            <TextField className="form-field"
                 value={value}
                 onChange={(e) => OnChangeHandler(e.target.value)}
                 label={label}

@@ -1,3 +1,4 @@
+
 .nav-button-light{
     text-decoration: none;
     font-size: 1.6rem;
@@ -13,9 +14,19 @@
 }
 .nav-button-light:hover{
     color: #49516F;
-    border-bottom: 4px solid #FF477E;
+    border-bottom: 4.5px solid #FF477E;
 }
 .active-light {
     color: #49516F;
     border-bottom: 4px solid #FF477E;
 }
+
+.box-plot{
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+
+
+
