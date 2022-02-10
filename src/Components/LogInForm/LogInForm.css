@@ -1,0 +1,12 @@
+.login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+    padding: 10%;
+}
+
+.login-form #outlined-password-input{
+    visibility: hidden;
+}

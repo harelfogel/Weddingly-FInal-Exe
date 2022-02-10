@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './Header.css'
 import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -8,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import NavLinkItem from './NavLinkItem';
+
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   alignItems: 'center',
   paddingTop: theme.spacing(1),
@@ -20,12 +22,15 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const handleLoggedIn=()=>{
+    setIsLoggedIn(true);
+  }
   return (
     <Box>
       <AppBar position="static" >
         <StyledToolbar>
-          <Box sx={{flexGrow: 1, display: 'flex', alignItems: 'center'}}>
-            <svg width="69" height="69" viewBox="0 0 69 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <Box className="box-plot">
+            <svg width="69" height="55" viewBox="0 0 69 69" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="68.25" height="69" rx="10" fill="#B73058"/>
               <rect y="10.6154" width="68.25" height="58.3846" rx="10" fill="#FF477E"/>
               <path
@@ -37,6 +42,7 @@ export default function Header() {
                 variant="h5"
                 noWrap
                 component="div"
+                className="headline"
                 sx={{color:"#49516F", fontWeight:"bolder",fontSize: '2.5rem', ml: '1rem', mr: '3rem'}}
             >
               {isLoggedIn ? "Shay&Koral" : "Weddingly"}
@@ -51,7 +57,6 @@ export default function Header() {
             : null}
           </Box>
             <Button variant="nav-button" onClick={() => setIsLoggedIn(prev=> !prev)}>{isLoggedIn ? "Calender" : "Log In"}</Button>
-
         </StyledToolbar>
       </AppBar>
     </Box>
