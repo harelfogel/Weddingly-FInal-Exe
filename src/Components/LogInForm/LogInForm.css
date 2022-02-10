@@ -6,3 +6,7 @@
     height: 60%;
     padding: 10%;
 }
+
+.login-form #outlined-password-input{
+    visibility: hidden;
+}

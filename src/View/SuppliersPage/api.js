@@ -1,5 +1,4 @@
 import axios from 'axios';
-const API_URL='http://localhost:3200';
 
 // const authAxios = (jwt) => axios.create({
 //     withCredentials: true,
@@ -9,6 +8,6 @@ const API_URL='http://localhost:3200';
 // })
 
 export const fetchSuppliersByType = async(type) =>{
-    const {data} = await axios.get(`${API_URL}/weddingly/suppliers/ByType/${type}`);
+    const {data} = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/weddingly/suppliers/ByType/${type}`);
     return data.suppliers;
 }

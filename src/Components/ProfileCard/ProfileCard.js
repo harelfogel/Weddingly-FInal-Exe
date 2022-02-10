@@ -8,9 +8,6 @@ import Icon from '@mui/material/Icon';
 import './Profile.css';
 import Modal from "../Modal/Modal";
 import useModal from '../Modal/useModal';
-//import BeautyStars from 'beauty-stars';
-const API_URL = 'http://localhost:3200';
-
 
 const ProfileCard = ({ rating, data }) => {
     const {name}=data;
@@ -21,7 +18,7 @@ const ProfileCard = ({ rating, data }) => {
     const [value, setValue] = React.useState(rating ?? 2);
     const [rating_, setRating_] = useState(3);
     useEffect(() => {
-        fetch(`${API_URL}/weddingly/ratings/${placeId}`)
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/weddingly/ratings/${placeId}`)
             .then(res => (res.json()))
             .then((data) => {
                 let counter = 0;
