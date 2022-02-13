@@ -6,8 +6,8 @@ import Typography from '@mui/material/Typography';
 import PinDropIcon from '@mui/icons-material/PinDrop';
 import Icon from '@mui/material/Icon';
 import './Profile.css';
-import Modal from "../Modal/Modal";
-import useModal from '../Modal/useModal';
+import AppointmentModal from "../AppointmentModal/AppointmentModal";
+import useModal from '../../Hooks/useModal/useModal';
 
 const ProfileCard = ({ rating, data }) => {
     const {name}=data;
@@ -21,8 +21,6 @@ const ProfileCard = ({ rating, data }) => {
         fetch(`${process.env.REACT_APP_BACKEND_URL}/weddingly/ratings/${placeId}`)
             .then(res => (res.json()))
             .then((data) => {
-                let counter = 0;
-                console.log(data['rating']);
                 if (data['rating'] < 4.1) {
                     setRating_(2);
                 }
@@ -44,16 +42,17 @@ const ProfileCard = ({ rating, data }) => {
         <Box className="profile">
             <img className="img-style" src={data.photo ?? "https://picsum.photos/200/300"} />
             <Rating
-                name="simple-controlled"
+                name="read-only"
                 value={rating_}
                 onChange={(event, newValue) => {
                     setRating_(newValue);
                 }}
+                readOnly
             />
             <Typography color="secondary" fontWeight="bold" variant="h6" component="legend">{data.name ?? "Noname"}</Typography>
             <div className="open-modal">
                 <button className="button-default" onClick={toggle}>Book Now</button>
-                <Modal
+                <AppointmentModal
                     isShowing={isShowing}
                     hide={toggle}
                     supplierId={_id}

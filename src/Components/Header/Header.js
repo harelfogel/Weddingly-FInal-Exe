@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import NavLinkItem from './NavLinkItem';
+import LoginModal from '../../LoginModal/LoginModal';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   alignItems: 'center',
@@ -56,7 +57,7 @@ export default function Header() {
                 </>)
             : null}
           </Box>
-            <Button variant="nav-button" onClick={() => setIsLoggedIn(prev=> !prev)}>{isLoggedIn ? "Calender" : "Log In"}</Button>
+           <LoginModal/>
         </StyledToolbar>
       </AppBar>
     </Box>

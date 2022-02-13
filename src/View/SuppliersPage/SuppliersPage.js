@@ -46,8 +46,7 @@ const SuppliersPage = () => {
                     return <ProfileCard data={supplier}  />;
                 })
             }
-            </Box>
-           
+            </Box>  
         </Box>
         
     );

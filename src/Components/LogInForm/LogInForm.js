@@ -16,12 +16,15 @@ export default function LoginForm() {
     {
       brideName: "",
       groomName: "",
+      budget: "",
       email: "",
+      roles: ['user'],
       password: ""
     }
   );
   const OnChangeBrideNameHandler = (brideNameEvent) => {
     try {
+      console.log(brideNameEvent);
       setFormInput({ ["brideName"]: brideNameEvent });
     } catch (e) {
       alert(e);
@@ -52,24 +55,34 @@ export default function LoginForm() {
     setFormInput({ ["email"]: emailEvent });
   }
 
+  const OnChangeBudgetHandler = (budgetEvent) => {
+    try {
+      if (budgetEvent) {
+        setFormInput({ ["budget"]: budgetEvent });
+      } else {
+        throw 'Empty budget field!';
+      }
+    } catch (e) {
+      alert(e);
+    }
+  }
+
   const handleSubmit = (evt) => {
     try {
-      evt.preventDefault();
+      console.log(formInput);
       let data = { formInput };
       if (data.formInput.brideName && data.formInput.groomName && data.formInput.password && data.formInput.email) {
-        console.log(data);
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/weddingly/auth/signin`, {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/weddingly/auth/signup`, {
           method: "POST",
           body: JSON.stringify(data),
           headers: {
             "Content-Type": "application/json"
           }
         })
-          .then(response => ((response.status)==200) ? navigate('/Suppliers'): alert('Wrong details'))
           .then(response => console.log("Success:", JSON.stringify(response)))
-          .catch(error => console.error("Error:", error));
+          .catch(error => console.error("Error:", error))
       } else {
-        throw ('Please fill all test fields');
+        throw ('Invalid fields');
       }
     } catch (e) {
       alert(e);
@@ -79,11 +92,12 @@ export default function LoginForm() {
   return (
     <React.Fragment>
       <Box className="login-form">
-        <FormField label={"Bride Name"} type={'text'}  name="Bride-Name" OnChangeHandler={OnChangeBrideNameHandler} />
+        <FormField label={"Bride Name"} type={'text'} name="Bride-Name" OnChangeHandler={OnChangeBrideNameHandler} />
         <FormField label={"Groom Name"} type={'text'} OnChangeHandler={OnChangeGroomNameHandler} />
-        <FormField label={"Email"} type={'text'}  OnChangeHandler={OnChangeEmailHandler} />
+        <FormField label={"Bugdet"} type={'text'} OnChangeHandler={OnChangeBudgetHandler} />
+        <FormField label={"Email"} type={'text'} OnChangeHandler={OnChangeEmailHandler} />
         <FormField label={"Password"} type={'password'} OnChangeHandler={OnChangePasswordHandler} />
-        <Button variant='form' onClick={handleSubmit} sx={{ marginTop: '2rem' }}>Submit</Button>
+        <Button variant='form' onClick={handleSubmit} sx={{ marginTop: '2rem' }}>Join us!</Button>
       </Box>
     </React.Fragment>
   );

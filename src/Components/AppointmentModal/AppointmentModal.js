@@ -1,13 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
 import ReactDOM from 'react-dom';
-import Header from '../Header/Header';
 import Calendar from '../Calendar/Calendar';
 import { format } from 'date-fns';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import * as yup from 'yup';
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, Typography } from '@mui/material';
 
 
 const validationSchema = yup.object({
@@ -17,7 +16,7 @@ const validationSchema = yup.object({
 });
 
 
-const Modal = ({ isShowing, hide, supplierId, supplierName, supplierType }) => {
+const AppointmentModal = ({ isShowing, hide, supplierId, supplierName, supplierType }) => {
   const [appoointmentDate, setAppoointmentDate] = useState(format(new Date(), 'yyyy-MM-dd HH:mm:ss'));
   const formik = useFormik({
     initialValues: {
@@ -39,17 +38,9 @@ const Modal = ({ isShowing, hide, supplierId, supplierName, supplierType }) => {
           meetingDate: appoointmentDate,
           meetingSupplierType: supplierType
         })
-        console.log(resposnse);
       } catch (e) {
         alert('Error has occured');
       }
-
-
-      //console.log(data);
-      // meetingSupplierId: req.body.meetingSupplierId,
-      //       meetingSupplierName: splitStringBetweenUppercase(req.body.meetingSupplierName),
-      //       meetingDate: req.body.meetingDate,
-      //       meetingSupplierType:req.body.type
     },
 
   })
@@ -59,6 +50,9 @@ const Modal = ({ isShowing, hide, supplierId, supplierName, supplierType }) => {
       <div className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
         <div className="modal">
           <div className="modal-header">
+            <div className="modal-headline">
+                <Typography className="headline">Meeting with {supplierName}</Typography>
+            </div>
             <button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}>
               <span aria-hidden="true">&times;</span>
             </button>
@@ -67,14 +61,14 @@ const Modal = ({ isShowing, hide, supplierId, supplierName, supplierType }) => {
             <Calendar datePicked={appoointmentDate} setDate={setAppoointmentDate} />
             <TextField
               name="comments"
-              label="add comments to the supplier"
+              label="Any comments?"
               value={formik.values.comments}
               onChange={formik.handleChange}
               error={formik.touched.comments && Boolean(formik.errors.comments)}
               helperText={formik.touched.comments && formik.errors.comments}
             />
-            <Button color="primary" variant="contained" type="submit">
-              Submit
+            <Button color="primary" variant="contained" type="submit" >
+              Get a Meeting!
             </Button>
           </form>
         </div>
@@ -84,4 +78,4 @@ const Modal = ({ isShowing, hide, supplierId, supplierName, supplierType }) => {
 
 }
 
-export default Modal;
+export default AppointmentModal;

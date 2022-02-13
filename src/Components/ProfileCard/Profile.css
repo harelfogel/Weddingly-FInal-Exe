@@ -44,15 +44,15 @@
     position: relative;
     margin: 1.75rem auto;
     border-radius: 3px;
-    max-width: 600px;
-    height: 450px;
+    max-width: 550px;
+    height: 430px;
     padding: 2rem;
   }
   
   .modal-header {
     display: flex;
     justify-content: flex-end;
-    height: 160px;
+    height: 10px;
   }
   
   .modal-close-button {
@@ -87,7 +87,30 @@
     flex-direction: column;
     width: 60%;
     align-items: center;
-    margin-left: 120px;
-    margin-top: 130px;
+    margin-left: 110px;
+    margin-top: 344px;
+    justify-content: space-between;
+  }
+
+  .headline{
+    color: #FF477E;
+    justify-content: center;
+    display: flex;
+    padding: 2rem;
+  }
+
+  .modal-headline{
+    justify-content: center;
+    align-content: center;
+    display: flex;
+    margin-right: 110px;
+    margin-top: 10px;
+  }
+
+  .login-form{
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
     justify-content: space-around;
   }
