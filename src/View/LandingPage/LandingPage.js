@@ -4,7 +4,8 @@ import Header from '../../Components/Header/Header';
 import LoginForm from '../../Components/LogInForm/LogInForm';
 import WeddingPhoto from './WeddingPhoto';
 import { useNavigate } from 'react-router-dom';
-function LandingPage() {
+function LandingPage(props) {
+
     const navigate = useNavigate();
     return (
         <>
@@ -25,7 +26,7 @@ function LandingPage() {
                         </Typography>
                     </Box>
                 </Grid>
-                <LoginForm navigate={navigate} />
+                <LoginForm navigate={navigate} setUser = {props.setUser} />
             </Grid>
             <Grid item xs={4}>
                 <WeddingPhoto />

@@ -7,7 +7,7 @@ import FormField from '../FormField/FormField';
 import { useReducer, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function LoginForm() {
+export default function LoginForm(props) {
   const navigate = useNavigate();
   const [isAuth, setAuth] = useState(false);
   const [formType, setformType] = useState('text');
@@ -79,8 +79,14 @@ export default function LoginForm() {
             "Content-Type": "application/json"
           }
         })
+          .then(response => response.status == 200 ? response.json() : alert("wrong!"))
+          .then(data => {
+            props.setUser(data.user);
+            navigate('/Suppliers');
+          })
           .then(response => console.log("Success:", JSON.stringify(response)))
-          .catch(error => console.error("Error:", error))
+          .catch(error => console.error("Error:", error));
+
       } else {
         throw ('Invalid fields');
       }
