@@ -2,6 +2,7 @@ import React from 'react'
 import Calendar from 'react-awesome-calendar';
 import { Container } from '@mui/material'
 export default function CalendarPage(props) {
+    console.log(props);
     const tempEvents = [
         {
             _id: "620574633fc5807273a9ea40",
