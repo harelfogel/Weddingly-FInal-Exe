@@ -1,8 +1,8 @@
 export const saveUserToLocalStorage = (userData) =>{
-    localStorage.setItem("userDetails", userData)
+    localStorage.setItem("userDetails", JSON.stringify(userData))
 }
 export const getUserDetails = () =>{
-    localStorage.getItem("userDetails");
+    JSON.parse(localStorage.getItem("userDetails"));
 }
 export const removeUserDetails = () =>{
     localStorage.removeItem("userDetails");

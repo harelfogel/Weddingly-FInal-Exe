@@ -1,7 +1,9 @@
 .hearts{
-    height:180px;
-    width:180px;
+    height:280px;
+    width:280px;
     justify-content: center;
+    margin-left: 450px;
+    margin-top: 170px;
     display: flex;
     align-content: center;
 }

@@ -6,6 +6,7 @@ import ProfileCard from '../../Components/ProfileCard/ProfileCard';
 import SearchIcon from '@mui/icons-material/Search';
 import Icon from '@mui/material/Icon';
 import { fetchSuppliersByType } from './api';
+import { getUserDetails } from '../../DataManager/LocalStorageConfig';
 
 const SuppliersPage = () => {
     const [selectedLink, setSelectedLink] = useState('Photographers');
@@ -22,7 +23,7 @@ const SuppliersPage = () => {
       const fetchInitialSuppliers = async() =>{
         const fetchedSuppliers = await fetchSuppliersByType(supplierDict[selectedLink])
         setSuppliers(fetchedSuppliers);
-        setFilteredSuppliers(fetchedSuppliers)
+        setFilteredSuppliers(fetchedSuppliers);
       }
       fetchInitialSuppliers()
     }, [selectedLink]);
