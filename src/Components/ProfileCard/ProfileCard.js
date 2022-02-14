@@ -16,7 +16,7 @@ const ProfileCard = ({ rating, data }) => {
     const {placeId} = data;
     const { isShowing, toggle } = useModal();
     const [value, setValue] = React.useState(rating ?? 2);
-    const [rating_, setRating_] = useState(3);
+    const [rating_, setRating_] = useState(2);
     useEffect(() => {
         fetch(`${process.env.REACT_APP_BACKEND_URL}/weddingly/ratings/${placeId}`)
             .then(res => (res.json()))

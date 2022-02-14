@@ -1,15 +1,17 @@
 import * as React from 'react';
-import './LogInForm.css';
+import './ClientRegisterForm.css';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { Button, TextField } from '@mui/material';
 import FormField from '../FormField/FormField';
 import { useReducer, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { saveUserToLocalStorage } from '../../DataManager/LocalStorageConfig';
+import axios from 'axios';
+import { alertError } from '../AlertToast/AlertToast';
 
-export default function LoginForm(props) {
+export default function ClientRegisterForm({setAuth}) {
   const navigate = useNavigate();
-  const [isAuth, setAuth] = useState(false);
   const [formType, setformType] = useState('text');
   const [formInput, setFormInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
@@ -18,7 +20,7 @@ export default function LoginForm(props) {
       groomName: "",
       budget: "",
       email: "",
-      roles: ['user'],
+      roles: 'client',
       password: ""
     }
   );
@@ -69,35 +71,25 @@ export default function LoginForm(props) {
 
   const handleSubmit = (evt) => {
     try {
-      console.log(formInput);
-      let data = { formInput };
-      if (data.formInput.brideName && data.formInput.groomName && data.formInput.password && data.formInput.email) {
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/weddingly/auth/signup`, {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: {
-            "Content-Type": "application/json"
-          }
-        })
-          .then(response => response.status == 200 ? response.json() : alert("wrong!"))
-          .then(data => {
-            props.setUser(data.user);
-            navigate('/Suppliers');
-          })
-          .then(response => console.log("Success:", JSON.stringify(response)))
-          .catch(error => console.error("Error:", error));
-
+      let data = { ...formInput };
+      console.log(data)
+      if (data.brideName && data.groomName && data.password && data.email) {
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/weddingly/auth/signup`, {...data, appointment: []}, { withCredentials: true})
+        .then(response =>{
+           saveUserToLocalStorage(response.data);
+          setAuth("Authrized")})
+        .catch(error => console.error("Error:", error))
       } else {
         throw ('Invalid fields');
       }
     } catch (e) {
-      alert(e);
+      alertError("Error in registration")
     }
   };
 
   return (
     <React.Fragment>
-      <Box className="login-form">
+      <Box className="register-form">
         <FormField label={"Bride Name"} type={'text'} name="Bride-Name" OnChangeHandler={OnChangeBrideNameHandler} />
         <FormField label={"Groom Name"} type={'text'} OnChangeHandler={OnChangeGroomNameHandler} />
         <FormField label={"Bugdet"} type={'text'} OnChangeHandler={OnChangeBudgetHandler} />

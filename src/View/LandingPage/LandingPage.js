@@ -1,11 +1,10 @@
 import { Grid, Typography, Box, Button } from '@mui/material';
 import React from 'react';
 import Header from '../../Components/Header/Header';
-import LoginForm from '../../Components/LogInForm/LogInForm';
+import ClientRegisterForm from '../../Components/ClientRegisterForm/ClientRegisterForm';
 import WeddingPhoto from './WeddingPhoto';
 import { useNavigate } from 'react-router-dom';
-function LandingPage(props) {
-
+function LandingPage({setAuth}) {
     const navigate = useNavigate();
     return (
         <>
@@ -26,7 +25,7 @@ function LandingPage(props) {
                         </Typography>
                     </Box>
                 </Grid>
-                <LoginForm navigate={navigate} setUser = {props.setUser} />
+                <ClientRegisterForm navigate={navigate} setAuth={setAuth} />
             </Grid>
             <Grid item xs={4}>
                 <WeddingPhoto />

@@ -13,8 +13,6 @@
     margin-right: 10px;
 }
 
-
-
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -47,6 +45,18 @@
     max-width: 550px;
     height: 430px;
     padding: 2rem;
+  }
+
+  .client-modal{
+    z-index: 100;
+    background: white;
+    position: relative;
+    margin: 1.75rem auto;
+    border-radius: 3px;
+    max-width: 550px;
+    height: 430px;
+    padding: 1em;
+    justify-content: space-between;
   }
   
   .modal-header {
@@ -114,3 +124,78 @@
     align-items: center;
     justify-content: space-around;
   }
+
+  .client-login-form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .client-login-headline{
+    
+    color: #FF477E;
+    padding:2rem;
+  }
+
+  .client-fields{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 11px;
+    
+  }
+
+  .client-button{
+    padding:2rem;
+  }
+
+  /* supplier form side */
+
+  
+
+.supplier-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 200vw;
+  height: 200vh;
+  background-color: #000;
+  opacity: .5;
+}
+
+.supplier-modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+}
+
+.supplier-modal {
+  z-index: 100;
+  background: rgb(200, 200, 200);
+  position: relative;
+  margin: 1.75rem auto;
+  border-radius: 3px;
+  max-width: 750px;
+  height: 630px;
+  padding: 2rem;
+}
+
+.register-modal-close-button{
+  font-size: 1.6rem;
+  margin-top: -22px;
+  font-weight: 700;
+  line-height: 1;
+  color:white;
+  opacity: .9;
+  cursor: pointer;
+  border: none;
+  height: 30px;
+}

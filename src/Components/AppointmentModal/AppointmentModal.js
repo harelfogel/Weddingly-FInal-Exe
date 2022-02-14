@@ -7,6 +7,9 @@ import { useFormik } from 'formik';
 import axios from 'axios';
 import * as yup from 'yup';
 import { Button, TextField, Typography } from '@mui/material';
+import { getUserDetails } from '../../DataManager/LocalStorageConfig';
+import { alertError, alertSucess } from '../AlertToast/AlertToast';
+  
 
 
 const validationSchema = yup.object({
@@ -15,8 +18,10 @@ const validationSchema = yup.object({
     .min(5, "you must enter at least 5 chars")
 });
 
-
 const AppointmentModal = ({ isShowing, hide, supplierId, supplierName, supplierType }) => {
+  const user=(JSON.parse((localStorage.getItem('userDetails'))));
+  const userId= user._id;
+  const userEmail=user.email;
   const [appoointmentDate, setAppoointmentDate] = useState(format(new Date(), 'yyyy-MM-dd HH:mm:ss'));
   const formik = useFormik({
     initialValues: {
@@ -29,17 +34,23 @@ const AppointmentModal = ({ isShowing, hide, supplierId, supplierName, supplierT
           meeting: {
             ...values,
             date: appoointmentDate,
-            email: 'email@gmail.com'
+            email: userEmail
           }
+          
         })
-        const resposnse = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/weddingly/customers/appoitments/61f2e82858402b5f360b89ac`, {
+        const resposnse = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/weddingly/customers/appoitments/${userId}`, {
           meetingSupplierId: supplierId,
           meetingSupplierName: supplierName,
           meetingDate: appoointmentDate,
           meetingSupplierType: supplierType
         })
+
+        if(data && resposnse){
+          alertSucess(`Meeting request sent to ${supplierName}`);
+          hide();
+        }
       } catch (e) {
-        alert('Error has occured');
+        alertError('Error! Cant add meeting');
       }
     },
 

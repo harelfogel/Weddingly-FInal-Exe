@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './Header.css'
+import './SupplierHeader.css'
 import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -22,18 +22,15 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   }
 }));
 
-export default function Header({ setAuth, authStatus }) {
-  let userName = '';
+export default function SupplierHeader({ setAuth, authStatus }) {
+
   const user = (JSON.parse((localStorage.getItem('userDetails'))));
+  let coupleName = '';
   if (user) {
-    if(user.roles=='supplier'){
-      userName=user.fullName;
-    } else{
-      userName = user.brideName.substring(0, user.brideName.indexOf(' ')) + '&' + user.groomName.substring(-1, user.brideName.indexOf(' '));
-    }
+    coupleName = user.brideName.substring(0, user.brideName.indexOf(' ')) + '&' + user.groomName.substring(-1, user.brideName.indexOf(' '));
   }
   else{
-    userName='Weddingly';
+    coupleName='Weddingly';
   }
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -61,13 +58,11 @@ export default function Header({ setAuth, authStatus }) {
               className="headline"
               sx={{ color: "#49516F", fontWeight: "bolder", fontSize: '2.5rem', ml: '1rem', mr: '3rem' }}
             >
-              {authStatus == "Authrized" ? `${userName}` : "Weddingly"}
+              {authStatus == "Authrized" ? `${coupleName}` : "Weddingly"}
             </Typography>
             {authStatus == "Authrized" &&
               (<>
-                <NavLinkItem to={'venue'} text={"Venue"} />
-                <NavLinkItem to={'dresses'} text={"Dresses"} />
-                <NavLinkItem to={'Suppliers'} text={"Suppliers"} />
+                <NavLinkItem to={'/Calendar'} text={"Meetings"} />
                 <NavLinkItem to={'/Logout'} text={"Logout"} />
               </>)
             }
