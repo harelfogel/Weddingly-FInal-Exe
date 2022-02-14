@@ -53,14 +53,13 @@ const SupplierRegisterModal = ({ setAuth }) => {
                                 <Typography fontSize="18px"> Suppliers Registration</Typography>
                             </div>
                         <form onSubmit={handleSubmit(onSubmit)} className="login-form">
-                           <SupplierRegisterForm/>
+                           <SupplierRegisterForm setAuth={setAuth}/>
                         </form>
                     </div>
                 </div>
             </>)}
-            <Button variant="nav-button" onClick={toggle}>Supplier's Register</Button>
+            <Button onClick={toggle} variant="work-with" sx={{color: 'white', position: 'fixed', bottom: '30px', right: '50px' }}>Come Work With US!</Button>
         </>
     )
 }
-
 export default SupplierRegisterModal;

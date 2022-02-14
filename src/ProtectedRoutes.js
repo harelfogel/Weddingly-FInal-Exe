@@ -9,6 +9,7 @@ const ProtectedRoutes = () => {
     <>
     <Routes>
         <Route path="/Suppliers" element={<SuppliersPage/>} />
+        <Route path="/Manager" element={<SuppliersPage Manager/>} />
         <Route path="/Calendar" element={<CalendarPage />} />
         <Route path="/Logout" element={<Logout/>}/>
     </Routes>

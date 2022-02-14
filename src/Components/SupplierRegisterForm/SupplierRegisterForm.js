@@ -1,20 +1,13 @@
 import * as React from 'react';
 import './SupplierRegisterForm.css';
 import Box from '@mui/material/Box';
-import { Button, TextField } from '@mui/material';
+import { Autocomplete, Button, TextField } from '@mui/material';
 import FormField from '../FormField/FormField';
 import { useReducer, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { alertError, alertSucess } from '../AlertToast/AlertToast';
 import { saveUserToLocalStorage } from '../../DataManager/LocalStorageConfig';
 import axios from 'axios';
-import Container from '@mui/material/Container';
-
-// const validationSchema = yup.object({
-//   email: yup
-//     .string('comment have to be text')
-//     .email()
-// });
 
 export default function SupplierRegisterForm({ setAuth }) {
   const navigate = useNavigate();
@@ -23,12 +16,13 @@ export default function SupplierRegisterForm({ setAuth }) {
   const [formInput, setFormInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
-      fullName: "",
-      groomName: "",
-      budget: "",
+      fullName:"",
       email: "",
-      roles: "supplier",
-      password: ""
+      price:"",
+      phone:"",
+      photo:"",
+      password: "",
+      roles:'supplier'
     }
   );
   const OnChangeFullNameHandler = (fullNameEvent) => {
@@ -72,7 +66,7 @@ export default function SupplierRegisterForm({ setAuth }) {
     }
   }
 
-  const OnChangeProfessionHandler = (professionEvent) => {
+  const OnChangeProfessionHandler = (e,professionEvent) => {
     try {
       if (professionEvent) {
         setFormInput({ ["type"]: professionEvent });
@@ -83,7 +77,6 @@ export default function SupplierRegisterForm({ setAuth }) {
       alertError(e);
     }
   }
-
 
   const OnChangeLocationHandler = (LocationEvent) => {
     try {
@@ -97,12 +90,27 @@ export default function SupplierRegisterForm({ setAuth }) {
     }
   }
 
+  const OnChangePhotoHandler =(photoEvent) => {
+    try {
+      if (photoEvent) {
+        setFormInput({ ["photo"]: photoEvent });
+      } else {
+        throw 'Empty photo url field!';
+      }
+    } catch (e) {
+      alertError(e);
+    }
+  }
+
+
   const handleSubmit = (evt) => {
+    console.log(formInput)
     try {
       let data = { ...formInput };
       if (data.fullName && data.budget && data.type && data.password && data.email) {
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/weddingly/auth/signup`, { ...data, appointment: [] }, { withCredentials: true })
           .then(response => {
+            console.log("here");
             saveUserToLocalStorage(response.data);
             setAuth("Authrized");
             alertSucess('Your request is sent to the system');
@@ -120,10 +128,12 @@ export default function SupplierRegisterForm({ setAuth }) {
     <React.Fragment>
       <Box className="supplier-register-form">
         <FormField label={"Full Name"} type={'text'} width={width} name="Full-Name" OnChangeHandler={OnChangeFullNameHandler} />
-        <FormField label={"Budget"} type={'text'} width={width} OnChangeHandler={OnChangeBudgetHandler} />
-        <FormField label={"Email"} type={'text'} width={width} OnChangeHandler={OnChangeEmailHandler} />
+        <FormField label={"Price"} type={'number'} width={width} OnChangeHandler={OnChangeBudgetHandler} />
+        <FormField label={"Email"} type={'email'} width={width} OnChangeHandler={OnChangeEmailHandler} />
         <FormField label={"Location"} type={'text'} width={width} OnChangeHandler={OnChangeLocationHandler} />
-        <FormField label={"Profession"} type={'text'} width={width} OnChangeHandler={OnChangeProfessionHandler} />
+        <FormField label={"Photo Url"} type={'url'} width={width} OnChangeHandler={OnChangePhotoHandler} />
+        <Autocomplete onChange={OnChangeProfessionHandler} disablePortal options={["Photographer","Dj","Wedding hall"]} sx={{ width: 300 }}
+        renderInput={(params) => <TextField {...params} label="Type" />}/>
         <FormField label={"Password"} type={'password'} width={width} OnChangeHandler={OnChangePasswordHandler} />
         <Button variant='form' onClick={handleSubmit} sx={{ marginTop: '2rem' }}>Join us!</Button>
       </Box>

@@ -8,15 +8,31 @@ import Icon from '@mui/material/Icon';
 import './Profile.css';
 import AppointmentModal from "../AppointmentModal/AppointmentModal";
 import useModal from '../../Hooks/useModal/useModal';
+import { FormControl, FormControlLabel, FormGroup, Switch, ToggleButton } from '@mui/material';
+import {ToggleButtonGroup } from '@mui/material';
+import { Axios } from 'axios';
+import axios from 'axios';
 
-const ProfileCard = ({ rating, data }) => {
-    const {name}=data;
+const ProfileCard = ({ rating, data, Manager }) => {
+    const {fullName}=data;
     const {type}=data; 
     const {_id}=data;
     const {placeId} = data;
     const { isShowing, toggle } = useModal();
     const [value, setValue] = React.useState(rating ?? 2);
     const [rating_, setRating_] = useState(2);
+    const [checked, setChecked] = useState(data.approved);
+    const handleToggle = (event , value) => {
+        axios.put(`${process.env.REACT_APP_BACKEND_URL}/weddingly/suppliers/${event.target.value}`, {approved:event.target.checked}, { withCredentials: true })
+        .then(response => {
+            console.log(response);
+            setChecked(prev => !prev);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+    }
     useEffect(() => {
         fetch(`${process.env.REACT_APP_BACKEND_URL}/weddingly/ratings/${placeId}`)
             .then(res => (res.json()))
@@ -49,17 +65,34 @@ const ProfileCard = ({ rating, data }) => {
                 }}
                 readOnly
             />
-            <Typography color="secondary" fontWeight="bold" variant="h6" component="legend">{data.name ?? "Noname"}</Typography>
+            <Typography color="secondary" fontWeight="bold" variant="h6" component="legend">{data.fullName ?? "Noname"}</Typography>
+            {Manager?
+            
+                <FormControl  fullWidth component="div">
+                <FormGroup row>
+                <FormControlLabel sx={{ml:0}}
+                    value={data._id}
+                    control={<Switch color="primary" />}
+                    labelPlacement="start"
+                    label="Approved ?"
+                    checked = {checked}
+                    onChange = {handleToggle}
+                    />
+                </FormGroup>
+                </FormControl>
+        
+            :
             <div className="open-modal">
                 <button className="button-default" onClick={toggle}>Book Now</button>
                 <AppointmentModal
                     isShowing={isShowing}
                     hide={toggle}
                     supplierId={_id}
-                    supplierName={name}
+                    supplierName={fullName}
                     supplierType={type}
                 />
             </div>
+            }
             <Box sx={{ display: 'flex', align: 'center', color: 'secondary' }}>
                 <Icon component={PinDropIcon} fontSize='small' color={"secondary"} />
                 

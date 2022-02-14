@@ -4,7 +4,11 @@ import Header from '../../Components/Header/Header';
 import ClientRegisterForm from '../../Components/ClientRegisterForm/ClientRegisterForm';
 import WeddingPhoto from './WeddingPhoto';
 import { useNavigate } from 'react-router-dom';
+import useModal from '../../Hooks/useModal/useModal';
+import SupplierRegisterModal from '../../Components/SupplierRegisterModal/SupplierRegisterModal';
+
 function LandingPage({setAuth}) {
+    const { isShowing, toggle } = useModal();
     const navigate = useNavigate();
     return (
         <>
@@ -30,7 +34,7 @@ function LandingPage({setAuth}) {
             <Grid item xs={4}>
                 <WeddingPhoto />
             </Grid>
-            <Button variant="work-with" sx={{ color: 'white', position: 'absolute', bottom: '30px', right: '50px' }}>Come Work With US!</Button>
+           
         </>
     );
 }
