@@ -11,6 +11,7 @@ const ProtectedRoutes = ({setAuthStatus}) => {
     <>
     <Routes>
         <Route path="/Suppliers" element={<SuppliersPage/>} />
+        <Route path="/Manager" element={<SuppliersPage Manager/>} />
         <Route path="/Calendar" element={<CalendarPage />} />
         <Route path="/UserCalendar" element={<UserCalendarPage />} />
         <Route path="/Meetings" element={<Meetings/>} />
