@@ -40,7 +40,7 @@ const SuppliersPage = (props) => {
     } 
     return (
         <Box sx={{ width: '100%', height: '90vh', display: 'flex', flexDirection: 'column', padding: '1rem 7%' }}>
-        {props.Manager && <h1>Manager </h1>}
+        {props.Manager}
             <Box sx={{ width: '100%', display: 'flex', flexBasis: '15%', justifyContent: 'center', alignItems: 'center' }}>
                 <FormField label="Supplier Name" width={"25%"} value={searchText} OnChangeHandler={onSearchTypeingHandler} />
             </Box>

@@ -12,7 +12,6 @@ import CalendarPage from './View/CalendarPage/CalendarPage';
 function App() {
   const [authStatus, setAuthStatus] = useAuth();
   const [user,setUser] = useState(null);
-  console.log(authStatus);
   return (
     <BrowserRouter>
       <Grid container spacing={2}>

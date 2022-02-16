@@ -22,8 +22,10 @@ const LoginModal = ({ setAuth }) => {
       alertSucess('Successful login!');
       if(responseLogin.data.roles=='supplier'){
           navigate('/Calendar');
-      } else {
-          navigate('/Suppliers');
+      } else if(responseLogin.data.roles=='admin') {
+          navigate('/Manager');
+      }else {
+        navigate('/Suppliers');
       }
     } catch (e) {
       console.log(e);
@@ -61,7 +63,7 @@ const LoginModal = ({ setAuth }) => {
               </div>
               <div className="client-button">
               <Button  color="primary" variant="contained" type="submit" >
-                Get Married!
+                Log In
               </Button>
               </div>
             </form>

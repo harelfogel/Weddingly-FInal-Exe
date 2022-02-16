@@ -31,8 +31,11 @@ export default function Header({ setAuth, authStatus }) {
   if (user) {
     if (user.roles == 'supplier') {
       userName = user.fullName;
-    } else {
-      userName = user.brideName.substring(0, user.brideName.indexOf(' ')) + '&' + user.groomName.substring(-1, user.brideName.indexOf(' '));
+    } else if(user.roles == 'admin') {
+      userName = user.brideName + " " + user.groomName;
+    }else {
+      userName = user.brideName.substring(0, user.brideName.indexOf(' ')) + " "+ '&'+ " " + user.groomName.substring(-1, user.groomName.indexOf(' '));
+      
     }
   }
   else {
@@ -73,7 +76,7 @@ export default function Header({ setAuth, authStatus }) {
             {authStatus == "Authrized" && user.roles == 'client' &&
               (<>
                 <NavLinkItem to={'/UserCalendar'} text={"Schedule"} />
-                <NavLinkItem to={'dresses'} text={"Dresses"} />
+                <NavLinkItem to={'Suppliers'} text={"Dresses"} />
                 <NavLinkItem to={'Suppliers'} text={"Suppliers"} />
                 <NavLinkItem to={'/Logout'} text={"Logout"} />
               </>)
@@ -82,6 +85,12 @@ export default function Header({ setAuth, authStatus }) {
               (<>
                 <NavLinkItem to={'/Calendar'} text={"Calendar"} />
                 <NavLinkItem to={'/Meetings'} text={"Schedule"} />
+                <NavLinkItem to={'/Logout'} text={"Logout"} />
+              </>)
+            }
+            {authStatus == "Authrized" && user.roles == 'admin' &&
+              (<>
+                <NavLinkItem to={'/Manager'} text={"Managament"} />
                 <NavLinkItem to={'/Logout'} text={"Logout"} />
               </>)
             }

@@ -10,11 +10,11 @@ import AppointmentModal from "../AppointmentModal/AppointmentModal";
 import useModal from '../../Hooks/useModal/useModal';
 import { FormControl, FormControlLabel, FormGroup, Switch, ToggleButton } from '@mui/material';
 import {ToggleButtonGroup } from '@mui/material';
-import { Axios } from 'axios';
 import axios from 'axios';
+import EditSupplierModal from './EditSupplierModal/EditSupplierModal';
 
 
-const ProfileCard = ({ rating, data }) => {
+const ProfileCard = ({ rating, data, Manager }) => {
     const { fullName } = data;
     const {phone}=data;
     const {price}=data;
@@ -28,7 +28,6 @@ const ProfileCard = ({ rating, data }) => {
     const handleToggle = (event , value) => {
         axios.put(`${process.env.REACT_APP_BACKEND_URL}/weddingly/suppliers/${event.target.value}`, {approved:event.target.checked}, { withCredentials: true })
         .then(response => {
-            console.log(response);
             setChecked(prev => !prev);
         })
         .catch((err) => {
@@ -81,6 +80,7 @@ const ProfileCard = ({ rating, data }) => {
                     checked = {checked}
                     onChange = {handleToggle}
                     />
+                   <EditSupplierModal userId={data._id}/>
                 </FormGroup>
                 </FormControl>
         

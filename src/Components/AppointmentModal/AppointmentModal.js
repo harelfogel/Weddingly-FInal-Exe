@@ -40,9 +40,9 @@ const AppointmentModal = ({ isShowing, hide, supplierId, supplierName, supplierT
             ...values,
             date: appoointmentDate,
             email: userEmail,
-            name: user.brideName.substring(0, user.brideName.indexOf(' ')) + '&' + user.groomName.substring(-1, user.brideName.indexOf(' '))
+            name: user.brideName.substring(0, user.brideName.indexOf(' ')) + '&' + user.groomName.substring(-1, user.groomName.indexOf(' '))
           }
-
+          
         })
         const resposnse = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/weddingly/customers/appoitments/${userId}`, {
           meetingSupplierId: supplierId,
@@ -50,7 +50,6 @@ const AppointmentModal = ({ isShowing, hide, supplierId, supplierName, supplierT
           meetingDate: appoointmentDate,
           meetingSupplierType: supplierType
         })
-
         if (data && resposnse) {
           alertSucess(`Meeting request sent to ${supplierName}`);
           hide();
