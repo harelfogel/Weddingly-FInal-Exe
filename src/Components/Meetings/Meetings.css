@@ -1,0 +1,37 @@
+.list-wrapper{
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 570px;
+    width: 650px;
+}
+
+
+.meetings-list{
+    display: flex;
+    padding: 2rem;
+    flex-direction: column;
+    background-color: #ffff;
+    width:620px;
+    border-radius: 15px;
+   
+}
+
+.list-headline{
+    color: #FF477E;
+    justify-content: center;
+    align-self: center;
+    padding: 2.5rem;
+    margin-left: 113px;
+}
+
+.delete-icon{
+  display: flex;
+  margin-left: 15px;
+  margin-bottom: -6.9px;
+  size: 2px;
+  color: grey;
+  cursor: pointer;
+  
+}
+

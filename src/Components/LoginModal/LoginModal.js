@@ -51,7 +51,7 @@ const LoginModal = ({ setAuth }) => {
             </div>
             <form onSubmit={handleSubmit(onSubmit)} className="client-login-form">
               <div className="client-login-headline">
-                <Typography >Log In</Typography>
+                <Typography variant={'h5'} >Log In</Typography>
               </div>
               <div className="client-fields">
                 <TextField type="text" placeholder="Email" {...register("Email", { required: true, pattern: /^\S+@\S+$/i })} />
@@ -61,7 +61,7 @@ const LoginModal = ({ setAuth }) => {
               </div>
               <div className="client-button">
               <Button  color="primary" variant="contained" type="submit" >
-                Submit
+                Get Married!
               </Button>
               </div>
             </form>

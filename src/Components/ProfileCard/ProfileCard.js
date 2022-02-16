@@ -13,11 +13,14 @@ import {ToggleButtonGroup } from '@mui/material';
 import { Axios } from 'axios';
 import axios from 'axios';
 
-const ProfileCard = ({ rating, data, Manager }) => {
-    const {fullName}=data;
-    const {type}=data; 
-    const {_id}=data;
-    const {placeId} = data;
+
+const ProfileCard = ({ rating, data }) => {
+    const { fullName } = data;
+    const {phone}=data;
+    const {price}=data;
+    const { type } = data;
+    const { _id } = data;
+    const { placeId } = data;
     const { isShowing, toggle } = useModal();
     const [value, setValue] = React.useState(rating ?? 2);
     const [rating_, setRating_] = useState(2);
@@ -56,7 +59,7 @@ const ProfileCard = ({ rating, data, Manager }) => {
     }, [])
     return (
         <Box className="profile">
-            <img className="img-style" src={data.photo ?? "https://picsum.photos/200/300"} />
+            <img className="img-style" src={data.photo ?? "https://chrisandruth.com/wp-content/uploads/2020/04/tulum-wedding-photographer-2-1.jpg"} />
             <Rating
                 name="read-only"
                 value={rating_}
@@ -82,6 +85,7 @@ const ProfileCard = ({ rating, data, Manager }) => {
                 </FormControl>
         
             :
+            
             <div className="open-modal">
                 <button className="button-default" onClick={toggle}>Book Now</button>
                 <AppointmentModal
@@ -90,6 +94,8 @@ const ProfileCard = ({ rating, data, Manager }) => {
                     supplierId={_id}
                     supplierName={fullName}
                     supplierType={type}
+                    supplierPrice={price}
+                    supplierPhone={phone}
                 />
             </div>
             }

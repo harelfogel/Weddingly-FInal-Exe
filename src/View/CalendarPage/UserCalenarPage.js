@@ -2,7 +2,7 @@ import React from 'react';
 import Calendar from 'react-awesome-calendar';
 import { Container } from '@mui/material';
 
-export default function CalendarPage() {
+export default function UserCalendarPage() {
     const user = JSON.parse((localStorage.getItem('userDetails')));
     const userEventsToCalendarEvents = (events) => {
         return events.map(event => {
@@ -17,7 +17,7 @@ export default function CalendarPage() {
     }
     return (
         <Container>
-            <Calendar events={userEventsToCalendarEvents(user.meeting)} />
+            <Calendar events={userEventsToCalendarEvents(user.appoitment)} />
         </Container>
 
     )

@@ -114,7 +114,6 @@ export default function SupplierRegisterForm({ setAuth }) {
             saveUserToLocalStorage(response.data);
             setAuth("Authrized");
             alertSucess('Your request is sent to the system');
-            
           })
           .catch(error => console.error("Error:", error))
       } else {
