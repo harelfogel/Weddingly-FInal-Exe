@@ -8,7 +8,6 @@ const Logout  = ({setAuthStatus}) => {
         const logoutFromServer = async() =>{
           try{
             const {data} = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/weddingly/auth/logout`,{},{withCredentials:true})
-            console.log(data);
           }catch(e){
             alertError('Error! Cant log out');
           }

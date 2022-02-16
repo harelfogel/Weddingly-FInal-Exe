@@ -1,18 +1,10 @@
-import { Button, TextField, Typography } from '@mui/material';
-import { Box } from '@mui/system';
-import axios from 'axios';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router';
-import { saveUserToLocalStorage } from '../../DataManager/LocalStorageConfig';
-import useModal from '../../Hooks/useModal/useModal';
-import { alertError } from '../AlertToast/AlertToast';
-import FormField from '../FormField/FormField';
-import SupplierForm from './SupplierForm/SupplierForm';
-import './SupplierRegisterModal.css';
+import { IconButton, Typography } from '@mui/material';
+import React from 'react'
+import useModal from '../../../Hooks/useModal/useModal';
+import SupplierForm from '../../SupplierRegisterModal/SupplierForm/SupplierForm';
+import CreateIcon from '@mui/icons-material/Create';
 
-
-const SupplierRegisterModal = ({ setAuth,  }) => {
+function EditSupplierModal({userId}) {
     const { isShowing, toggle } = useModal();
     return (
         <>
@@ -28,15 +20,18 @@ const SupplierRegisterModal = ({ setAuth,  }) => {
                             </button>
                         </div>
                             <div className="supplier-register-headline">
-                                <Typography fontSize="18px"> Suppliers Registration</Typography>
+                                <Typography fontSize="18px" marginBottom="1rem"> Edit Supllier Details</Typography>
                             </div>
                         
-                           <SupplierForm setAuth={setAuth} />
+                           <SupplierForm toggle={toggle} userId={userId}/>
                     </div>
                 </div>
             </>)}
-            <Button onClick={toggle} variant="work-with" sx={{color: 'white', position: 'fixed', bottom: '30px', right: '50px' }}>Come Work With US!</Button>
+            <IconButton style={{ right: -30 }} aria-label="update supplier" onClick={() =>toggle()} >
+                        <CreateIcon/>
+                    </IconButton>
         </>
     )
 }
-export default SupplierRegisterModal;
+
+export default EditSupplierModal

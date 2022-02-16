@@ -17,7 +17,6 @@ const validationSchema = yup.object({
 });
 
 const VerfiyModal = ({ isShowing, hide, supplierId, supplierName, supplierType }) => {
-console.log('verifymodal');
   const user=(JSON.parse((localStorage.getItem('userDetails'))));
   const userId= user._id;
   const userEmail=user.email;
