@@ -27,7 +27,7 @@ function EditSupplierModal({userId}) {
                     </div>
                 </div>
             </>)}
-            <IconButton aria-label="update supplier" onClick={() =>toggle()} >
+            <IconButton style={{ right: -30 }} aria-label="update supplier" onClick={() =>toggle()} >
                         <CreateIcon/>
                     </IconButton>
         </>
