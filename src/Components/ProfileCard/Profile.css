@@ -10,7 +10,7 @@
     flex-direction: column;
     width:230px;
     height: 330px;
-    margin-right: 10px;
+    padding: 1.5rem;
 }
 
 .modal-overlay {
@@ -88,6 +88,7 @@
   
   .button-default {
     background: #FF477E;
+    width: 230px;
     color: #fff;
 
   }
@@ -199,3 +200,4 @@
   border: none;
   height: 30px;
 }
+

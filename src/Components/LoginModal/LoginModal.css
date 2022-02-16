@@ -1,12 +1,24 @@
-.login-headline{
+.client-login-headline{
     color:#FF477E;
+    margin-top: -10px;
 }
 
 .supplier-login{
     margin:1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.client-fields{
+    display: flex;
+    justify-content: space-between;
 }
 
 .button-login{
    justify-content: space-between;
    margin: 2rem;
 }
+
+/* .client-button{
+
+} */

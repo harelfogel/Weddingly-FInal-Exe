@@ -18,7 +18,8 @@ const validationSchema = yup.object({
     .min(5, "you must enter at least 5 chars")
 });
 
-const AppointmentModal = ({ isShowing, hide, supplierId, supplierName, supplierType }) => {
+const VerfiyModal = ({ isShowing, hide, supplierId, supplierName, supplierType }) => {
+console.log('verifymodal');
   const user=(JSON.parse((localStorage.getItem('userDetails'))));
   const userId= user._id;
   const userEmail=user.email;
@@ -90,4 +91,4 @@ const AppointmentModal = ({ isShowing, hide, supplierId, supplierName, supplierT
 
 }
 
-export default AppointmentModal;
+export default VerfiyModal;
