@@ -10,7 +10,7 @@
     flex-direction: column;
     width:230px;
     height: 330px;
-    padding: 1.5rem;
+    padding: 1rem;
 }
 
 .modal-overlay {
@@ -64,16 +64,25 @@
     justify-content: flex-end;
     height: 10px;
   }
+
+  .appoitment-modal-header{
+    display: flex;
+    justify-content: center;
+    margin-right: 130px;
+    margin-top: -35px;
+    height: 10px;
+  }
   
   .modal-close-button {
     font-size: 1.4rem;
+    margin-left: 500px;
     font-weight: 700;
     line-height: 1;
     color: #000;
     opacity: .3;
     cursor: pointer;
     border: none;
-    height: 30px;
+    height: 10px;
   }
   
   button {
@@ -98,8 +107,8 @@
     flex-direction: column;
     width: 60%;
     align-items: center;
-    margin-left: 110px;
-    margin-top: 344px;
+    margin-left: 130px;
+    margin-top: 284px;
     justify-content: space-between;
   }
 
@@ -110,12 +119,50 @@
     padding: 2rem;
   }
 
+  .details-headline{
+    justify-content: center;
+    display: flex;
+    padding: 1.5rem;
+  }
+
+  .phone-icon{
+    padding-right: 0.5rem;
+    color: black;
+  }
+  .price-icon{
+    padding-right: 0.5rem;
+    margin-top: 2px;
+    color: black;
+  }
+
   .modal-headline{
     justify-content: center;
     align-content: center;
     display: flex;
     margin-right: 110px;
     margin-top: 10px;
+  }
+  .appointment-modal-headline{
+    justify-content: center;
+    align-content: center;
+    color: #FF477E;
+    display: flex;
+    margin-right:170px;
+    margin-top: 27px;
+  }
+
+  .button-appoitment-modal{
+    margin-bottom: 25px;
+  }
+
+  .supplier-additional-details{
+    margin-top: 50px;
+  }
+
+  .price-details-headline{
+    margin-top: 50px;
+    justify-content: center;
+    display:flex;
   }
 
   .login-form{

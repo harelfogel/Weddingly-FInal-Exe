@@ -19,7 +19,6 @@ import { alertError, alertSucess } from '../AlertToast/AlertToast';
 export default function Meetings() {
   const user = (JSON.parse((localStorage.getItem('userDetails'))));
   const [userMeetings, setUserMeetings] = React.useState([]);
-  const { isShowing, toggle } = useModal();
   React.useEffect(() => {
     setUserMeetings(user.meeting.filter((elem) => {
       return elem.approved == false;

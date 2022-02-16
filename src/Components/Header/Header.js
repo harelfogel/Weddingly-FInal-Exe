@@ -72,7 +72,7 @@ export default function Header({ setAuth, authStatus }) {
             </Typography>
             {authStatus == "Authrized" && user.roles == 'client' &&
               (<>
-                <NavLinkItem to={'venue'} text={"Venue"} />
+                <NavLinkItem to={'/UserCalendar'} text={"Schedule"} />
                 <NavLinkItem to={'dresses'} text={"Dresses"} />
                 <NavLinkItem to={'Suppliers'} text={"Suppliers"} />
                 <NavLinkItem to={'/Logout'} text={"Logout"} />

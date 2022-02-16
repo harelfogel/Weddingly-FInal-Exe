@@ -10,8 +10,6 @@ import { Button, TextField, Typography } from '@mui/material';
 import { getUserDetails } from '../../DataManager/LocalStorageConfig';
 import { alertError, alertSucess } from '../AlertToast/AlertToast';
   
-
-
 const validationSchema = yup.object({
   comments: yup
     .string('comment have to be text')
