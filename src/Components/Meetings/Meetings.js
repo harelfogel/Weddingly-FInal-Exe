@@ -29,6 +29,7 @@ export default function Meetings() {
     try {
       const data = { approved: true };
       const updateMeeting = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/weddingly/suppliers/meetings/${user._id}/${meetingId}`, data, { withCredentials: true })
+      console.log(updateMeeting);
       alertSucess(`Meeting has been approved!`);
       setUserMeetings(prev => prev.filter((meeting) => meeting._id != meetingId));
       const userAprrovedMeeting = {

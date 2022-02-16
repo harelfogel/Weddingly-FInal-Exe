@@ -14,7 +14,7 @@ import { Axios } from 'axios';
 import axios from 'axios';
 
 
-const ProfileCard = ({ rating, data }) => {
+const ProfileCard = ({ rating, data,Manager }) => {
     const { fullName } = data;
     const {phone}=data;
     const {price}=data;
