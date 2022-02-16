@@ -1,0 +1,12 @@
+.supplier-register-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    padding: 1.3%;
+}
+
+.login-form #outlined-password-input{
+    visibility: hidden;
+}

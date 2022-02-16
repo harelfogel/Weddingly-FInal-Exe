@@ -12,6 +12,7 @@ import CalendarPage from './View/CalendarPage/CalendarPage';
 function App() {
   const [authStatus, setAuthStatus] = useAuth();
   const [user,setUser] = useState(null);
+  console.log(authStatus);
   return (
     <BrowserRouter>
       <Grid container spacing={2}>
@@ -21,7 +22,7 @@ function App() {
         <Routes>
           {authStatus == "loading" && <Route path="*" element={<MyLoader/> } />}
           {authStatus == "UnAuthrized" &&<Route path="*" element={<LandingPage setAuth={setAuthStatus} setUser={setUser} />} /> }
-          {authStatus == "Authrized" &&<Route path="*" element={<ProtectedRoutes/>} />}
+          {authStatus == "Authrized" &&<Route path="*" element={<ProtectedRoutes setAuthStatus={setAuthStatus} />} />}
         </Routes>
       </Grid>
     </BrowserRouter>

@@ -1,15 +1,22 @@
 import axios from 'axios'
 import React, { useEffect } from 'react'
 import { removeUserDetails } from '../../DataManager/LocalStorageConfig'
+import { alertError } from '../AlertToast/AlertToast';
 
-const Logout  = () => {
+const Logout  = ({setAuthStatus}) => {
     useEffect(() => {   
         const logoutFromServer = async() =>{
-            const {data} = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/weddingly/logout`)
+          try{
+            const {data} = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/weddingly/auth/logout`,{},{withCredentials:true})
+            console.log(data);
+          }catch(e){
+            alertError('Error! Cant log out');
+          }
         }
+        setAuthStatus('UnAuthrized');
         logoutFromServer();
         removeUserDetails();
-       //window.location.replace('/');
+         window.location.replace('/');
     }, []);
     
   return (

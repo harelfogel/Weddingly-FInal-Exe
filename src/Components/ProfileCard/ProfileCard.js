@@ -10,10 +10,12 @@ import AppointmentModal from "../AppointmentModal/AppointmentModal";
 import useModal from '../../Hooks/useModal/useModal';
 
 const ProfileCard = ({ rating, data }) => {
-    const {name}=data;
-    const {type}=data; 
-    const {_id}=data;
-    const {placeId} = data;
+    const { fullName } = data;
+    const {phone}=data;
+    const {price}=data;
+    const { type } = data;
+    const { _id } = data;
+    const { placeId } = data;
     const { isShowing, toggle } = useModal();
     const [value, setValue] = React.useState(rating ?? 2);
     const [rating_, setRating_] = useState(2);
@@ -40,7 +42,7 @@ const ProfileCard = ({ rating, data }) => {
     }, [])
     return (
         <Box className="profile">
-            <img className="img-style" src={data.photo ?? "https://picsum.photos/200/300"} />
+            <img className="img-style" src={data.photo ?? "https://chrisandruth.com/wp-content/uploads/2020/04/tulum-wedding-photographer-2-1.jpg"} />
             <Rating
                 name="read-only"
                 value={rating_}
@@ -49,23 +51,24 @@ const ProfileCard = ({ rating, data }) => {
                 }}
                 readOnly
             />
-            <Typography color="secondary" fontWeight="bold" variant="h6" component="legend">{data.name ?? "Noname"}</Typography>
+            <Typography color="secondary" fontWeight="bold" variant="h6" component="legend">{data.fullName ?? "Noname"}</Typography>
+                <Box sx={{ display: 'flex', align: 'center', color: 'secondary' }}>
+                    <Icon component={PinDropIcon} fontSize='small' color={"secondary"} />
+                    <Typography color="secondary" component="legend">
+                        {data.location[0].city}</Typography>
+                </Box>
             <div className="open-modal">
                 <button className="button-default" onClick={toggle}>Book Now</button>
                 <AppointmentModal
                     isShowing={isShowing}
                     hide={toggle}
                     supplierId={_id}
-                    supplierName={name}
+                    supplierName={fullName}
                     supplierType={type}
+                    supplierPrice={price}
+                    supplierPhone={phone}
                 />
             </div>
-            <Box sx={{ display: 'flex', align: 'center', color: 'secondary' }}>
-                <Icon component={PinDropIcon} fontSize='small' color={"secondary"} />
-                
-                <Typography color="secondary" component="legend">
-                    {data.location[0].city ?? "no location"}</Typography>
-            </Box>
         </Box>
     );
 };
