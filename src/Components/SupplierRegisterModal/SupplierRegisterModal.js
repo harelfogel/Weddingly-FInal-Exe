@@ -15,11 +15,10 @@ import './SupplierRegisterModal.css';
 const SupplierRegisterModal = ({ setAuth }) => {
     const { isShowing, toggle } = useModal();
     const { register, handleSubmit, setError, formState: { errors } } = useForm();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const onSubmit = async (data) => {
         try {
             const responseLogin = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/weddingly/auth/signin`, data, { withCredentials: true })
-            console.log(responseLogin.data);
             saveUserToLocalStorage(responseLogin.data);
             toggle();
             setAuth("Authrized");

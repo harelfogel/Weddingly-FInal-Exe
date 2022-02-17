@@ -28,7 +28,6 @@ const ProfileCard = ({ rating, data,Manager }) => {
     const handleToggle = (event , value) => {
         axios.put(`${process.env.REACT_APP_BACKEND_URL}/weddingly/suppliers/${event.target.value}`, {approved:event.target.checked}, { withCredentials: true })
         .then(response => {
-            console.log(response);
             setChecked(prev => !prev);
         })
         .catch((err) => {

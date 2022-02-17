@@ -27,7 +27,6 @@ export default function SupplierRegisterForm({ setAuth }) {
   );
   const OnChangeFullNameHandler = (fullNameEvent) => {
     try {
-      console.log(fullNameEvent);
       setFormInput({ ["fullName"]: fullNameEvent });
     } catch (e) {
       alertError(e);
@@ -110,7 +109,6 @@ export default function SupplierRegisterForm({ setAuth }) {
       if (data.fullName && data.budget && data.type && data.password && data.email) {
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/weddingly/auth/signup`, { ...data, appointment: [] }, { withCredentials: true })
           .then(response => {
-            console.log("here");
             saveUserToLocalStorage(response.data);
             setAuth("Authrized");
             alertSucess('Your request is sent to the system');

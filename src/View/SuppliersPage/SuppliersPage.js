@@ -3,8 +3,6 @@ import { Box, Button } from '@mui/material';
 import FormField from '../../Components/FormField/FormField';
 import SuppliersNavBar from '../../Components/SuppliersNavBar/SuppliersNavBar';
 import ProfileCard from '../../Components/ProfileCard/ProfileCard';
-import SearchIcon from '@mui/icons-material/Search';
-import Icon from '@mui/material/Icon';
 import { fetchSuppliersByType } from './api';
 import { getUserDetails } from '../../DataManager/LocalStorageConfig';
 
@@ -48,7 +46,7 @@ const SuppliersPage = (props) => {
             <Box sx={{ width: '100%', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))', mt: '5%' }}>
             {
                 filteredSuppliers.length !== 0 && filteredSuppliers.map((supplier) => {
-                    return <ProfileCard Manager={props.Manager} data={supplier}  />;
+                    return <ProfileCard Manager={props.Manager} data={supplier} />;
                 })
             }
             </Box>  

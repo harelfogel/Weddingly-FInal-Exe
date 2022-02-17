@@ -11,10 +11,7 @@ import { getUserDetails } from '../../DataManager/LocalStorageConfig';
 import { alertError, alertSucess } from '../AlertToast/AlertToast';
 import { ImPhone } from 'react-icons/im';
 import { GiTwoCoins } from 'react-icons/gi';
-
-
-
-
+import { Navigate, useNavigate } from 'react-router';
 
 const validationSchema = yup.object({
   comments: yup
@@ -24,9 +21,15 @@ const validationSchema = yup.object({
 
 const AppointmentModal = ({ isShowing, hide, supplierId, supplierName, supplierType, supplierPhone, supplierPrice }) => {
   const user = (JSON.parse((localStorage.getItem('userDetails'))));
+  const [userAppointemnt, setUserAppoitment] = React.useState([]);
+  React.useEffect(() => {
+    setUserAppoitment(user.appointment.filter((elem) => {
+      return elem.approved == false;
+    }))
+  }, [])
   const userId = user._id;
   const userEmail = user.email;
-  const space='  ';
+  const navigate = useNavigate();
   const [appoointmentDate, setAppoointmentDate] = useState(format(new Date(), 'yyyy-MM-dd HH:mm:ss'));
   const formik = useFormik({
     initialValues: {
@@ -39,8 +42,10 @@ const AppointmentModal = ({ isShowing, hide, supplierId, supplierName, supplierT
           meeting: {
             ...values,
             date: appoointmentDate,
+            clientId: userId,
             email: userEmail,
-            name: user.brideName.substring(0, user.brideName.indexOf(' ')) + '&' + user.groomName.substring(-1, user.brideName.indexOf(' '))
+            name: user.brideName,
+            appointemntId:""
           }
 
         })
@@ -48,14 +53,16 @@ const AppointmentModal = ({ isShowing, hide, supplierId, supplierName, supplierT
           meetingSupplierId: supplierId,
           meetingSupplierName: supplierName,
           meetingDate: appoointmentDate,
-          meetingSupplierType: supplierType
+          meetingSupplierType: supplierType,
+          supplierMeetingId: data.meeting[data.meeting.length - 1]._id
         })
-
+        const updateId = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/weddingly/suppliers/meetings/${supplierId}/${data.meeting[data.meeting.length - 1]._id}/${resposnse.data.appointment[resposnse.data.appointment.length - 1]._id}`)
         if (data && resposnse) {
           alertSucess(`Meeting request sent to ${supplierName}`);
           hide();
         }
       } catch (e) {
+        console.log(e)
         alertError('Error! Cant add meeting');
       }
     },
@@ -66,15 +73,15 @@ const AppointmentModal = ({ isShowing, hide, supplierId, supplierName, supplierT
       <div className="modal-overlay" />
       <div className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
         <div className="modal">
-        <button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}>
-              <span aria-hidden="true">&times;</span>
-            </button>
+          <button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}>
+            <span aria-hidden="true">&times;</span>
+          </button>
           <div className="appoitment-modal-header">
             <div className="appointment-modal-headline">
               <Typography variant={'h6'}>Meeting {supplierName}:</Typography>
             </div>
           </div>
-            
+
           <div className="supplier-additional-details">
             <Typography
               className="details-headline" variant={'h8'}>
@@ -102,9 +109,9 @@ const AppointmentModal = ({ isShowing, hide, supplierId, supplierName, supplierT
               helperText={formik.touched.comments && formik.errors.comments}
             />
             <div className="button-appoitment-modal">
-            <Button  color="primary" variant="contained" type="submit" >
-              Get a Meeting!
-            </Button>
+              <Button color="primary" variant="contained" type="submit" >
+                Get a Meeting!
+              </Button>
             </div>
           </form>
         </div>

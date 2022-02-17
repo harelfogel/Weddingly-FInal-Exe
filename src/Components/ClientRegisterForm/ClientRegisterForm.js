@@ -26,7 +26,6 @@ export default function ClientRegisterForm({setAuth}) {
   );
   const OnChangeBrideNameHandler = (brideNameEvent) => {
     try {
-      console.log(brideNameEvent);
       setFormInput({ ["brideName"]: brideNameEvent });
     } catch (e) {
       alert(e);
@@ -72,7 +71,6 @@ export default function ClientRegisterForm({setAuth}) {
   const handleSubmit = (evt) => {
     try {
       let data = { ...formInput };
-      console.log(data)
       if (data.brideName && data.groomName && data.password && data.email) {
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/weddingly/auth/signup`, {...data, appointment: []}, { withCredentials: true})
         .then(response =>{
