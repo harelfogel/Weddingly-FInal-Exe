@@ -11,17 +11,17 @@ import CalendarPage from './View/CalendarPage/CalendarPage';
 
 function App() {
   const [authStatus, setAuthStatus] = useAuth();
-  const [user,setUser] = useState(null);
+  const [user, setUser] = useState(null);
   return (
     <BrowserRouter>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Header authStatus={authStatus} setAuth={setAuthStatus}/>
+          <Header authStatus={authStatus} setAuth={setAuthStatus} />
         </Grid>
         <Routes>
-          {authStatus == "loading" && <Route path="*" element={<MyLoader/> } />}
-          {authStatus == "UnAuthrized" &&<Route path="*" element={<LandingPage setAuth={setAuthStatus} setUser={setUser} />} /> }
-          {authStatus == "Authrized" &&<Route path="*" element={<ProtectedRoutes setAuthStatus={setAuthStatus} />} />}
+          {authStatus == "loading" && <Route path="*" element={<MyLoader />} />}
+          {authStatus == "UnAuthrized" && <Route path="*" element={<LandingPage setAuth={setAuthStatus} setUser={setUser} />} />}
+          {authStatus == "Authrized" && <Route path="*" element={<ProtectedRoutes setAuthStatus={setAuthStatus}  setUser={setUser} />} />}
         </Routes>
       </Grid>
     </BrowserRouter>

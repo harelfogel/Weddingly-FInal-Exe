@@ -10,11 +10,7 @@ import axios from 'axios';
 import './Meetings.css';
 import { Button, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import VerifyModal from '../VerfiyModal/VerifyModal';
-import useModal from '../../Hooks/useModal/useModal';
 import { alertError, alertSucess } from '../AlertToast/AlertToast';
-
-
 
 export default function Meetings() {
   const user = (JSON.parse((localStorage.getItem('userDetails'))));
@@ -29,6 +25,9 @@ export default function Meetings() {
     try {
       const data = { approved: true };
       const updateMeeting = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/weddingly/suppliers/meetings/${user._id}/${meetingId}`, data, { withCredentials: true })
+      const clientId= updateMeeting.data.meeting[updateMeeting.data.meeting.length-1].clientId;
+      const appointemntId= updateMeeting.data.meeting[updateMeeting.data.meeting.length-1].appointemntId;
+      const updateClientAppoitment = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/weddingly/customers/appoitmentsApproved/${clientId}/${appointemntId}`,{ withCredentials: true })
       alertSucess(`Meeting has been approved!`);
       setUserMeetings(prev => prev.filter((meeting) => meeting._id != meetingId));
       const userAprrovedMeeting = {

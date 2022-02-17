@@ -14,7 +14,7 @@ import axios from 'axios';
 import EditSupplierModal from './EditSupplierModal/EditSupplierModal';
 
 
-const ProfileCard = ({ rating, data, Manager }) => {
+const ProfileCard = ({ rating, data,Manager }) => {
     const { fullName } = data;
     const {phone}=data;
     const {price}=data;
