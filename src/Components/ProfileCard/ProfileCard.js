@@ -10,8 +10,8 @@ import AppointmentModal from "../AppointmentModal/AppointmentModal";
 import useModal from '../../Hooks/useModal/useModal';
 import { FormControl, FormControlLabel, FormGroup, Switch, ToggleButton } from '@mui/material';
 import {ToggleButtonGroup } from '@mui/material';
-import { Axios } from 'axios';
 import axios from 'axios';
+import EditSupplierModal from './EditSupplierModal/EditSupplierModal';
 
 
 const ProfileCard = ({ rating, data,Manager }) => {
@@ -80,6 +80,7 @@ const ProfileCard = ({ rating, data,Manager }) => {
                     checked = {checked}
                     onChange = {handleToggle}
                     />
+                   <EditSupplierModal userId={data._id}/>
                 </FormGroup>
                 </FormControl>
         

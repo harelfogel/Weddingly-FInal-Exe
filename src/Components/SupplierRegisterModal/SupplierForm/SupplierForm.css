@@ -1,0 +1,9 @@
+.registration-form{
+    display : flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+.fields-form{
+    margin: 0.5rem !important;
+}
