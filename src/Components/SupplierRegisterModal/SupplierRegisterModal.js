@@ -1,18 +1,11 @@
 import { Button, TextField, Typography } from '@mui/material';
-import { Box } from '@mui/system';
-import axios from 'axios';
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router';
-import { saveUserToLocalStorage } from '../../DataManager/LocalStorageConfig';
 import useModal from '../../Hooks/useModal/useModal';
-import { alertError } from '../AlertToast/AlertToast';
-import FormField from '../FormField/FormField';
 import SupplierForm from './SupplierForm/SupplierForm';
 import './SupplierRegisterModal.css';
 
 
-const SupplierRegisterModal = ({ setAuth,  }) => {
+const SupplierRegisterModal = ({ setAuth, }) => {
     const { isShowing, toggle } = useModal();
     return (
         <>
@@ -27,15 +20,15 @@ const SupplierRegisterModal = ({ setAuth,  }) => {
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                            <div className="supplier-register-headline">
-                                <Typography fontSize="18px"> Suppliers Registration</Typography>
-                            </div>
-                        
-                           <SupplierForm setAuth={setAuth} />
+                        <div className="supplier-register-headline">
+                            <Typography fontSize="18px"> Suppliers Registration</Typography>
+                        </div>
+
+                        <SupplierForm setAuth={setAuth} />
                     </div>
                 </div>
             </>)}
-            <Button onClick={toggle} variant="work-with" sx={{color: 'white', position: 'fixed', bottom: '30px', right: '50px' }}>Come Work With US!</Button>
+            <Button onClick={toggle} variant="work-with" sx={{ color: 'white', position: 'fixed', bottom: '30px', right: '50px' }}>Come Work With US!</Button>
         </>
     )
 }

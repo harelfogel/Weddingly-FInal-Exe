@@ -25,9 +25,9 @@ export default function Meetings() {
     try {
       const data = { approved: true };
       const updateMeeting = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/weddingly/suppliers/meetings/${user._id}/${meetingId}`, data, { withCredentials: true })
-      const clientId= updateMeeting.data.meeting[updateMeeting.data.meeting.length-1].clientId;
-      const appointemntId= updateMeeting.data.meeting[updateMeeting.data.meeting.length-1].appointemntId;
-      const updateClientAppoitment = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/weddingly/customers/appoitmentsApproved/${clientId}/${appointemntId}`,{ withCredentials: true })
+      const clientId = updateMeeting.data.meeting[updateMeeting.data.meeting.length - 1].clientId;
+      const appointemntId = updateMeeting.data.meeting[updateMeeting.data.meeting.length - 1].appointemntId;
+      const updateClientAppoitment = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/weddingly/customers/appoitmentsApproved/${clientId}/${appointemntId}`, { withCredentials: true })
       alertSucess(`Meeting has been approved!`);
       setUserMeetings(prev => prev.filter((meeting) => meeting._id != meetingId));
       const userAprrovedMeeting = {
@@ -40,7 +40,7 @@ export default function Meetings() {
         })
       }
       localStorage.removeItem('userDetails');
-      localStorage.setItem('userDetails',JSON.stringify(userAprrovedMeeting));
+      localStorage.setItem('userDetails', JSON.stringify(userAprrovedMeeting));
     } catch (e) {
       alertError('Error! Cant confirm meeting');
     }

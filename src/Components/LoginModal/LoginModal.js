@@ -11,7 +11,7 @@ import './LoginModal.css';
 
 const LoginModal = ({ setAuth }) => {
   const { isShowing, toggle } = useModal();
-  const { register, handleSubmit, setError, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate()
   const onSubmit = async (data) => {
     try {
@@ -20,11 +20,11 @@ const LoginModal = ({ setAuth }) => {
       toggle();
       setAuth("Authrized");
       alertSucess('Successful login!');
-      if(responseLogin.data.roles=='supplier'){
-          navigate('/Calendar');
-      } else if(responseLogin.data.roles=='admin') {
-          navigate('/Manager');
-      }else {
+      if (responseLogin.data.roles == 'supplier') {
+        navigate('/Calendar');
+      } else if (responseLogin.data.roles == 'admin') {
+        navigate('/Manager');
+      } else if  (responseLogin.data.roles == 'client') {
         navigate('/Suppliers');
       }
     } catch (e) {
@@ -62,9 +62,9 @@ const LoginModal = ({ setAuth }) => {
                 {errors.Password?.type === 'required' && "password is required"}
               </div>
               <div className="client-button">
-              <Button  color="primary" variant="contained" type="submit" >
-                Log In
-              </Button>
+                <Button color="primary" variant="contained" type="submit" >
+                  Log In
+                </Button>
               </div>
             </form>
           </div>
@@ -73,7 +73,7 @@ const LoginModal = ({ setAuth }) => {
       <div className="button-login" >
         <Button variant="nav-button" onClick={toggle}>Log In</Button>
       </div>
-    </> 
+    </>
   )
 }
 

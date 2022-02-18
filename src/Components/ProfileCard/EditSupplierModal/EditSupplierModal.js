@@ -4,7 +4,7 @@ import useModal from '../../../Hooks/useModal/useModal';
 import SupplierForm from '../../SupplierRegisterModal/SupplierForm/SupplierForm';
 import CreateIcon from '@mui/icons-material/Create';
 
-function EditSupplierModal({userId}) {
+function EditSupplierModal({ userId }) {
     const { isShowing, toggle } = useModal();
     return (
         <>
@@ -19,17 +19,17 @@ function EditSupplierModal({userId}) {
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                            <div className="supplier-register-headline">
-                                <Typography fontSize="18px" marginBottom="1rem"> Edit Supllier Details</Typography>
-                            </div>
-                        
-                           <SupplierForm toggle={toggle} userId={userId}/>
+                        <div className="supplier-register-headline">
+                            <Typography fontSize="18px" marginBottom="1rem"> Edit Supllier Details</Typography>
+                        </div>
+
+                        <SupplierForm toggle={toggle} userId={userId} />
                     </div>
                 </div>
             </>)}
-            <IconButton style={{ right: -30 }} aria-label="update supplier" onClick={() =>toggle()} >
-                        <CreateIcon/>
-                    </IconButton>
+            <IconButton style={{ right: -30 }} aria-label="update supplier" onClick={() => toggle()} >
+                <CreateIcon />
+            </IconButton>
         </>
     )
 }

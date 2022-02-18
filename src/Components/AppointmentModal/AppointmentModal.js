@@ -7,11 +7,9 @@ import { useFormik } from 'formik';
 import axios from 'axios';
 import * as yup from 'yup';
 import { Button, TextField, Typography } from '@mui/material';
-import { getUserDetails } from '../../DataManager/LocalStorageConfig';
 import { alertError, alertSucess } from '../AlertToast/AlertToast';
 import { ImPhone } from 'react-icons/im';
 import { GiTwoCoins } from 'react-icons/gi';
-import { Navigate, useNavigate } from 'react-router';
 
 const validationSchema = yup.object({
   comments: yup
@@ -29,7 +27,6 @@ const AppointmentModal = ({ isShowing, hide, supplierId, supplierName, supplierT
   }, [])
   const userId = user._id;
   const userEmail = user.email;
-  const navigate = useNavigate();
   const [appoointmentDate, setAppoointmentDate] = useState(format(new Date(), 'yyyy-MM-dd HH:mm:ss'));
   const formik = useFormik({
     initialValues: {
@@ -45,9 +42,9 @@ const AppointmentModal = ({ isShowing, hide, supplierId, supplierName, supplierT
             clientId: userId,
             email: userEmail,
             name: user.brideName,
-            appointemntId:""
+            appointemntId: ""
           }
-          
+
         })
         const resposnse = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/weddingly/customers/appoitments/${userId}`, {
           meetingSupplierId: supplierId,

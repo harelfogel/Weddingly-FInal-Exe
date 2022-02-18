@@ -4,15 +4,12 @@ import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { Button } from '@mui/material';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import NavLinkItem from './NavLinkItem';
 import LoginModal from '../LoginModal/LoginModal';
 import SupplierRegisterModal from '../SupplierRegisterModal/SupplierRegisterModal';
-import { Navigate, useNavigate } from 'react-router';
-import { removeUserDetails } from '../../DataManager/LocalStorageConfig';
+import { Navigate } from 'react-router-dom';
+
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   alignItems: 'center',
@@ -25,7 +22,6 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 }));
 
 export default function Header({ setAuth, authStatus }) {
-  const navigate = useNavigate();
   let userName = '';
   const user = (JSON.parse((localStorage.getItem('userDetails'))));
   if (user) {
@@ -47,7 +43,7 @@ export default function Header({ setAuth, authStatus }) {
     setIsLoggedIn(true);
   }
   const handleClick = () => {
-    navigate('/');
+    Navigate('/');
     setAuth("UnAuthrized");
   }
   return (

@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import React from "react";
 import "./Calendar.css";
 import { TextField } from "@mui/material";
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { DateTimePicker } from "@mui/lab";
-import {format} from 'date-fns'
 
 
 const Calendar = ({datePicked, setDate}) => {
