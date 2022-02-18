@@ -77,9 +77,9 @@ export default function SupplierForm({ setAuth, userId, toggle }) {
             email: yup.string().email("must be a valid email").required("you must enter "),
             price: yup.number("price of charge must be a number").required("you must enter a price"),
             phone: yup.string().required("you must enter phone "),
-            photo: yup.string().required("you must enter "),
-            location: yup.string().required("you must enter "),
-            placeId: yup.string().required("you must enter "),
+            photo: yup.string().required("you must enter photo url "),
+            location: yup.string().required("you must enter location "),
+            placeId: yup.string().required("you must enter place ID from google "),
           }))
           setType(data.type)
         } catch (e) {
