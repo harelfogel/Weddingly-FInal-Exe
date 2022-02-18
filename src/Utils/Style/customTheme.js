@@ -1,20 +1,21 @@
 import { createTheme } from "@mui/material";
 import { buttonStyle } from "./Components/Button";
-import {textFieldStyle} from "./Components/Field";
+import { textFieldStyle } from "./Components/Field";
+
 const customTheme = createTheme({
-    components: {...buttonStyle, ...textFieldStyle},
-    palette:{
+    components: { ...buttonStyle, ...textFieldStyle },
+    palette: {
         primary:
         {
             main: '#FF477E'
         },
-        secondary:{
+        secondary: {
             main: '#49516F'
         },
 
     },
-    typography:{
-        fontFamily:[
+    typography: {
+        fontFamily: [
             'Poppins'
         ].join(',')
     }

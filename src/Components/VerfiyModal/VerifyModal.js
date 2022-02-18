@@ -7,9 +7,8 @@ import { useFormik } from 'formik';
 import axios from 'axios';
 import * as yup from 'yup';
 import { Button, TextField, Typography } from '@mui/material';
-import { getUserDetails } from '../../DataManager/LocalStorageConfig';
 import { alertError, alertSucess } from '../AlertToast/AlertToast';
-  
+
 const validationSchema = yup.object({
   comments: yup
     .string('comment have to be text')
@@ -17,9 +16,9 @@ const validationSchema = yup.object({
 });
 
 const VerfiyModal = ({ isShowing, hide, supplierId, supplierName, supplierType }) => {
-  const user=(JSON.parse((localStorage.getItem('userDetails'))));
-  const userId= user._id;
-  const userEmail=user.email;
+  const user = (JSON.parse((localStorage.getItem('userDetails'))));
+  const userId = user._id;
+  const userEmail = user.email;
   const [appoointmentDate, setAppoointmentDate] = useState(format(new Date(), 'yyyy-MM-dd HH:mm:ss'));
   const formik = useFormik({
     initialValues: {
@@ -35,7 +34,7 @@ const VerfiyModal = ({ isShowing, hide, supplierId, supplierName, supplierType }
             email: userEmail,
             name: user.brideName.substring(0, user.brideName.indexOf(' ')) + '&' + user.groomName.substring(-1, user.brideName.indexOf(' '))
           }
-          
+
         })
         const resposnse = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/weddingly/customers/appoitments/${userId}`, {
           meetingSupplierId: supplierId,
@@ -44,7 +43,7 @@ const VerfiyModal = ({ isShowing, hide, supplierId, supplierName, supplierType }
           meetingSupplierType: supplierType
         })
 
-        if(data && resposnse){
+        if (data && resposnse) {
           alertSucess(`Meeting request sent to ${supplierName}`);
           hide();
         }
@@ -61,7 +60,7 @@ const VerfiyModal = ({ isShowing, hide, supplierId, supplierName, supplierType }
         <div className="modal">
           <div className="modal-header">
             <div className="modal-headline">
-                <Typography className="headline">Meeting with {supplierName}</Typography>
+              <Typography className="headline">Meeting with {supplierName}</Typography>
             </div>
             <button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}>
               <span aria-hidden="true">&times;</span>

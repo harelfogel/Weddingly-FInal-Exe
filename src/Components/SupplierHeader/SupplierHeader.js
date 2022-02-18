@@ -29,8 +29,8 @@ export default function SupplierHeader({ setAuth, authStatus }) {
   if (user) {
     coupleName = user.brideName.substring(0, user.brideName.indexOf(' ')) + '&' + user.groomName.substring(-1, user.brideName.indexOf(' '));
   }
-  else{
-    coupleName='Weddingly';
+  else {
+    coupleName = 'Weddingly';
   }
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);

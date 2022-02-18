@@ -6,18 +6,18 @@ import CalendarPage from './View/CalendarPage/CalendarPage';
 import UserCalendarPage from './View/CalendarPage/UserCalenarPage';
 import SuppliersPage from './View/SuppliersPage/SuppliersPage';
 
-const ProtectedRoutes = ({setAuthStatus,setUser}) => {
-  
+const ProtectedRoutes = ({ setAuthStatus, setUser }) => {
+
   return (
     <>
-    <Routes>
-        <Route path="/Suppliers" element={<SuppliersPage/>} />
-        <Route path="/Manager" element={<SuppliersPage Manager/>} />
+      <Routes>
+        <Route path="/Suppliers" element={<SuppliersPage />} />
+        <Route path="/Manager" element={<SuppliersPage Manager />} />
         <Route path="/Calendar" element={<CalendarPage />} />
         <Route path="/UserCalendar" element={<UserCalendarPage setUser={setUser} />} />
-        <Route path="/Meetings" element={<Meetings/>} />
-        <Route path="/Logout" element={<Logout setAuthStatus={setAuthStatus}/>}/>
-    </Routes>
+        <Route path="/Meetings" element={<Meetings />} />
+        <Route path="/Logout" element={<Logout setAuthStatus={setAuthStatus} />} />
+      </Routes>
     </>
   )
 }

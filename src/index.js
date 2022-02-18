@@ -9,10 +9,10 @@ import { ToastContainer } from 'react-toastify';
 
 ReactDOM.render(
   <React.StrictMode>
-  <ThemeProvider theme={customTheme}>
-    <App />
-  </ThemeProvider>
-  <ToastContainer />
+    <ThemeProvider theme={customTheme}>
+      <App />
+    </ThemeProvider>
+    <ToastContainer />
   </React.StrictMode>,
   document.getElementById('root')
 );

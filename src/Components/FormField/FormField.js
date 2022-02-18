@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './FormField.css'
 import { TextField } from '@mui/material';
-const FormField = ({ label, OnChangeHandler, width, value,type}) => {
+const FormField = ({ label, OnChangeHandler, width, value, type }) => {
     return (
         <TextField className="form-field"
             value={value}

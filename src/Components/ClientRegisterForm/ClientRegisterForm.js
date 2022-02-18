@@ -5,13 +5,11 @@ import Container from '@mui/material/Container';
 import { Button, TextField } from '@mui/material';
 import FormField from '../FormField/FormField';
 import { useReducer, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { saveUserToLocalStorage } from '../../DataManager/LocalStorageConfig';
 import axios from 'axios';
 import { alertError } from '../AlertToast/AlertToast';
 
-export default function ClientRegisterForm({setAuth}) {
-  const navigate = useNavigate();
+export default function ClientRegisterForm({ setAuth }) {
   const [formType, setformType] = useState('text');
   const [formInput, setFormInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
@@ -72,11 +70,12 @@ export default function ClientRegisterForm({setAuth}) {
     try {
       let data = { ...formInput };
       if (data.brideName && data.groomName && data.password && data.email) {
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}/weddingly/auth/signup`, {...data, appointment: []}, { withCredentials: true})
-        .then(response =>{
-           saveUserToLocalStorage(response.data);
-          setAuth("Authrized")})
-        .catch(error => console.error("Error:", error))
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/weddingly/auth/signup`, { ...data, appointment: [] }, { withCredentials: true })
+          .then(response => {
+            saveUserToLocalStorage(response.data);
+            setAuth("Authrized")
+          })
+          .catch(error => console.error("Error:", error))
       } else {
         throw ('Invalid fields');
       }

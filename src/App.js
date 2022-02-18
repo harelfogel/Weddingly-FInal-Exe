@@ -5,9 +5,8 @@ import React, { useState } from "react";
 import { Grid } from '@mui/material';
 import useAuth from './Hooks/useAuth/useAuth';
 import ProtectedRoutes from './ProtectedRoutes';
-import SuppliersPage from './View/SuppliersPage/SuppliersPage';
 import MyLoader from './Loader/MyLoader';
-import CalendarPage from './View/CalendarPage/CalendarPage';
+
 
 function App() {
   const [authStatus, setAuthStatus] = useAuth();
@@ -21,7 +20,7 @@ function App() {
         <Routes>
           {authStatus == "loading" && <Route path="*" element={<MyLoader />} />}
           {authStatus == "UnAuthrized" && <Route path="*" element={<LandingPage setAuth={setAuthStatus} setUser={setUser} />} />}
-          {authStatus == "Authrized" && <Route path="*" element={<ProtectedRoutes setAuthStatus={setAuthStatus}  setUser={setUser} />} />}
+          {authStatus == "Authrized" && <Route path="*" element={<ProtectedRoutes setAuthStatus={setAuthStatus} setUser={setUser} />} />}
         </Routes>
       </Grid>
     </BrowserRouter>
