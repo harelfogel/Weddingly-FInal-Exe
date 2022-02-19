@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button } from '@mui/material';
+import {Box} from '@mui/material';
 import FormField from '../../Components/FormField/FormField';
 import SuppliersNavBar from '../../Components/SuppliersNavBar/SuppliersNavBar';
 import ProfileCard from '../../Components/ProfileCard/ProfileCard';
 import { fetchSuppliersByType } from './api';
-import { getUserDetails } from '../../DataManager/LocalStorageConfig';
 
 const SuppliersPage = (props) => {
     const [selectedLink, setSelectedLink] = useState('Photographers');
@@ -27,7 +26,8 @@ const SuppliersPage = (props) => {
         setFilteredSuppliers(fetchedSuppliers);
       }
       fetchInitialSuppliers()
-    }, [selectedLink]);
+    }, [selectedLink, suppliers]);
+
     const onSearchTypeingHandler = (text) =>{
         setSearchText(text)
         if(text === ''){
@@ -46,7 +46,7 @@ const SuppliersPage = (props) => {
             <Box sx={{ width: '100%', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))', mt: '5%' }}>
             {
                 filteredSuppliers.length !== 0 && filteredSuppliers.map((supplier) => {
-                    return <ProfileCard Manager={props.Manager} data={supplier} />;
+                    return <ProfileCard setSuppliers={setSuppliers}  Manager={props.Manager} data={supplier} />;
                 })
             }
             </Box>  

@@ -21,7 +21,7 @@ const initialValue = {
   roles: "supplier"
 }
 
-export default function SupplierForm({ setAuth, userId, toggle }) {
+export default function SupplierForm({ setAuth, userId, toggle,setSuppliers }) {
   const [type, setType] = useState("")
   const [supplierInitialValues, setSupplierInitialValues] = useState()
   const [validationSchema, setValidationSchema] = useState(yup.object({
@@ -102,11 +102,20 @@ export default function SupplierForm({ setAuth, userId, toggle }) {
         if (userId) {
           axios.put(`${process.env.REACT_APP_BACKEND_URL}/weddingly/suppliers/${userId}`, { ...data }, { withCredentials: true })
             .then(response => {
+              console.log("after put");
               alertSucess('You Have Updated The Supplier Profile');
               toggle()
-              setTimeout(() => { window.location.reload() }, 1000)
-            })
-        } else
+              console.log(userId);
+              setSuppliers(prev => {
+                const temp = prev.map(s=> {
+                  if(userId == s._id) return data;
+                  return s ;
+                });
+                console.log(temp);
+                return temp;
+              });
+            });
+        } else {
           axios.post(`${process.env.REACT_APP_BACKEND_URL}/weddingly/auth/signup`, { ...data }, { withCredentials: true })
             .then(response => {
               saveUserToLocalStorage(response.data);
@@ -114,7 +123,7 @@ export default function SupplierForm({ setAuth, userId, toggle }) {
               alertSucess('Your request is sent to the system');
               navigate('/Calendar')
             })
-
+          }
       } catch (e) {
         alertError('Error! Cant add meeting');
       }

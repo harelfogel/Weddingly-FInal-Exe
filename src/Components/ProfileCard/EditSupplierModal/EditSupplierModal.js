@@ -4,7 +4,7 @@ import useModal from '../../../Hooks/useModal/useModal';
 import SupplierForm from '../../SupplierRegisterModal/SupplierForm/SupplierForm';
 import CreateIcon from '@mui/icons-material/Create';
 
-function EditSupplierModal({ userId }) {
+function EditSupplierModal({ userId,isManager,setSuppliers }) {
     const { isShowing, toggle } = useModal();
     return (
         <>
@@ -23,7 +23,7 @@ function EditSupplierModal({ userId }) {
                             <Typography fontSize="18px" marginBottom="1rem"> Edit Supllier Details</Typography>
                         </div>
 
-                        <SupplierForm toggle={toggle} userId={userId} />
+                        <SupplierForm setSuppliers={setSuppliers} isManager={isManager} toggle={toggle} userId={userId} />
                     </div>
                 </div>
             </>)}

@@ -13,7 +13,7 @@ import axios from 'axios';
 import EditSupplierModal from './EditSupplierModal/EditSupplierModal';
 
 
-const ProfileCard = ({ rating, data, Manager }) => {
+const ProfileCard = ({ rating, data, Manager, setSuppliers }) => {
     const { fullName } = data;
     const { phone } = data;
     const { price } = data;
@@ -83,7 +83,7 @@ const ProfileCard = ({ rating, data, Manager }) => {
                             checked={checked}
                             onChange={handleToggle}
                         />
-                        <EditSupplierModal userId={data._id} />
+                        <EditSupplierModal isManager setSuppliers={setSuppliers} userId={data._id} />
                     </FormGroup>
                 </FormControl>
 
